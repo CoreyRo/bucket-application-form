@@ -1,0 +1,1 @@
+const bucketApp = require('../controllers/bucketController.js')
