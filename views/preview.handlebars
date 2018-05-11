@@ -61,10 +61,10 @@
 {{#unless submitted}}
 <form method="POST" action='/api/submit-app'>
     <div class="form-group">
-            <label for="buttonAppId">Bucket Application ID</label>
+            <label for="buttonAppId">Bucket Applicant ID</label>
             <input type="text" class="form-control" id="buttonAppId" name="buttonAppId" aria-describedby="appHelp" placeholder="Enter Application ID" required>
             <input type="text" class="form-control" id="modelId" name="modelId" value="{{this.data._id}}" hidden>
-            <small id="appHelp" class="form-text text-muted">Button application ID given in your email</small>
+            <small id="appHelp" class="form-text text-muted">Bucket applicant ID given in your email</small>
             <input type="text" class="form-control" id="Position" name="Postition" value="{{this.data.Position}}" hidden>
             <input type="text" class="form-control" id="PortfolioUrl" name="PortfolioUrl" value="{{this.data.PortfolioUrl}}" hidden>
             <input type="text" class="form-control" id="ResumeUrl" name="ResumeUrl" value="{{this.data.ResumeUrl}}" hidden>
@@ -83,8 +83,8 @@
             <label for="buttonAppId">Bucket Application ID</label>
             <input type="text" class="form-control" id="buttonAppId" name="buttonAppId" aria-describedby="appHelp" placeholder="Enter Application ID" required>
             <input type="text" class="form-control" id="modelId" name="modelId" value="{{this.data._id}}" hidden>
-            <small id="appHelp" class="form-text text-muted">Button application ID given in your email</small>
-            <input type="text" class="form-control" id="Position" name="Postition" value="{{this.data.Position}}" hidden>
+            <small id="appHelp" class="form-text text-muted">Bucket application ID retruned from POST (in console)</small>
+            <input type="text" class="form-control" id="Position" name="Position" value="{{this.data.Position}}" hidden>
             <input type="text" class="form-control" id="PortfolioUrl" name="PortfolioUrl" value="{{this.data.PortfolioUrl}}" hidden>
             <input type="text" class="form-control" id="ResumeUrl" name="ResumeUrl" value="{{this.data.ResumeUrl}}" hidden>
             <input type="text" class="form-control" id="CoverPageText" name="CoverPageText" value="{{this.data.CoverPageText}}" hidden>

@@ -126,7 +126,7 @@ module.exports = {
     },
 
     finalSubmit: function(req, res, next){
-        axios.post(`https://apply.bucketthechange.com/api/submitApplication/${req.body.buttonAppId}`,{
+        axios.get(`https://apply.bucketthechange.com/api/submitApplication/${req.body.buttonAppId}`,{
             Position: req.body.Position,
             PortfolioUrl: req.body.PortfolioUrl,
             ResumeUrl: req.body.ResumeUrl,
@@ -140,9 +140,8 @@ module.exports = {
             res.redirect(`/done`)
         })
         .catch(function (err) {
-            if (err) 
-                throw err
-            return console.log("err", err)
+            console.log("err", err)
+            res.redirect(`/`)
         })
     },
 
