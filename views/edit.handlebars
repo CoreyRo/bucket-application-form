@@ -1,0 +1,192 @@
+
+<div class="jumbotron text-center">
+    <h1>Bucket Application Form</h1>
+    <h4>Author: Corey Rodems</h4>
+    <p>This is a simple node.js web app using express, handlebars, mongo, bootstrap, and summernote "WYSIWYG" text editor</p>
+</div>
+<div role="div" class="container">
+    <div class="col-md-12">
+        <p><strong>Applicant: </strong>{{this.data.FirstName}} {{this.data.LastName}}</p>
+        <p><strong>Phone Number: </strong>{{this.data.PhoneNumber}}</p>
+        <p><strong>Email: </strong>{{this.data.EmailAddress}}</p>
+        <form method="POST" action='/api/save-edit/{{this.data._id}}?_method=PUT'>
+            <div class="form-group">
+                <label for="Position">Postion</label>
+                <input type="text" class="form-control" id="Position" name="Position" value="{{this.data.Position}}" placeholder="Front End Developer">
+            </div>
+            <div class="form-group">
+                <label for="PortfolioUrl">Portfolio URL</label>
+                <input type="text" class="form-control" id="PortfolioUrl" name="PortfolioUrl" value="{{this.data.PortfolioUrl}}" placeholder="www.example.com">
+            </div>
+            <div class="form-group">
+                <label for="ResumeUrl">Resume URL</label>
+                <input type="text" class="form-control" id="ResumeUrl" name="ResumeUrl" value={{this.data.ResumeUrl}} placeholder="www.example.com/resume.pdf">
+            </div>
+
+            <div class="form-group">
+                <label for="CoverPageText">Cover Letter</label>
+                <textarea id="summernote1" id="CoverPageText" name="CoverPageText"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="Education">Education</label>
+                <textarea id="summernote2" id="Education" name="Education"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="Experience">Experience</label>
+                <textarea id="summernote3" id="Experience" name="Experience"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="AdditionalText">AdditionalText</label>
+                <textarea id="summernote4" id="AdditionalText" name="AdditionalText"></textarea>
+            </div>
+            <input type="_id" class="form-control" id="_id" name="_id" value="{{this.data._id}}" hidden>
+            <button type="submit" class="btn btn-primary">Save Changes</button> 
+            <a href="/delete/{{this.data._id}}" class="btn btn-danger">Delete This</a>
+        </form>
+
+    </div>
+</div>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    window.onload = function (event) {
+
+
+
+    $('#summernote1').summernote({
+        tabsize: 2,
+        height: 200,
+        callbacks: {
+            onPaste: function (e) {},
+            onChange: function (contents, $editable) {
+                $('#summernote1').val(contents)
+            }
+        },
+        toolbar: [
+            // [groupName, [list of button]]
+            [
+                'style', ['bold', 'italic', 'underline', 'clear']
+            ],
+            ['font', ['strikethrough']],
+            ['fontsize', ['fontsize']],
+            ['color', ['color']],
+            [
+                'para', ['ul', 'ol', 'paragraph']
+            ],
+            ['height', ['height']]
+        ]
+    })
+
+    $('#summernote1').each(function () {
+        if ($(this).data('validator'))
+            $(this).data('validator').settings.ignore = ".note-editor *";
+    });
+
+    $('#summernote2').summernote({
+        tabsize: 2,
+        height: 200,
+        callbacks: {
+            onPaste: function (e) {},
+            onChange: function (contents, $editable) {
+                $('#summernote2').val(contents)
+            }
+        },
+        toolbar: [
+            // [groupName, [list of button]]
+            [
+                'style', ['bold', 'italic', 'underline', 'clear']
+            ],
+            ['font', ['strikethrough']],
+            ['fontsize', ['fontsize']],
+            ['color', ['color']],
+            [
+                'para', ['ul', 'ol', 'paragraph']
+            ],
+            ['height', ['height']]
+        ]
+    })
+
+    $('#summernote2').each(function () {
+        if ($(this).data('validator'))
+            $(this).data('validator').settings.ignore = ".note-editor *";
+    });
+
+    $('#summernote3').summernote({
+        tabsize: 2,
+        height: 200,
+        callbacks: {
+            onPaste: function (e) {},
+            onChange: function (contents, $editable) {
+                $('#summernote3').val(contents)
+            }
+        },
+        toolbar: [
+            // [groupName, [list of button]]
+            [
+                'style', ['bold', 'italic', 'underline', 'clear']
+            ],
+            ['font', ['strikethrough']],
+            ['fontsize', ['fontsize']],
+            ['color', ['color']],
+            [
+                'para', ['ul', 'ol', 'paragraph']
+            ],
+            ['height', ['height']]
+        ]
+    })
+
+    $('#summernote3').each(function () {
+        if ($(this).data('validator'))
+            $(this).data('validator').settings.ignore = ".note-editor *";
+    });
+
+    $('#summernote4').summernote({
+        tabsize: 2,
+        height: 200,
+        callbacks: {
+            onPaste: function (e) {},
+            onChange: function (contents, $editable) {
+                $('#summernote4').val(contents)
+            }
+        },
+        toolbar: [
+            // [groupName, [list of button]]
+            [
+                'style', ['bold', 'italic', 'underline', 'clear']
+            ],
+            ['font', ['strikethrough']],
+            ['fontsize', ['fontsize']],
+            ['color', ['color']],
+            [
+                'para', ['ul', 'ol', 'paragraph']
+            ],
+            ['height', ['height']]
+        ]
+    })
+
+    $('#summernote4').each(function () {
+        if ($(this).data('validator'))
+            $(this).data('validator').settings.ignore = ".note-editor *";
+    });
+    
+
+
+
+    let id = $("#_id").val()
+    axios.get(`/api/find/${id}`)
+        .then(res => {
+            console.log("res", res.data)
+            let Cov = res.data.CoverPageText
+            let Ed = res.data.Education
+            let Ex = res.data.Experience
+            let Ad = res.data.AdditionalText
+            $('#summernote1').summernote('code', Cov)
+            $('#summernote2').summernote('code', Ed)
+            $('#summernote3').summernote('code', Ex)
+            $('#summernote4').summernote('code', Ad)
+        })
+        .catch(err => console.log(err))
+
+
+    }
+</script>
+

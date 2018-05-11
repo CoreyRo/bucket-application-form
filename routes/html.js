@@ -3,13 +3,38 @@ const db = require("../models")
 module.exports = function (router) {
     router
         .get('/', function (req, res, next) {
+            res.render('start', {
+                title: 'Bucket Application Form',
+                pageTitle: "App Form",
+                progress: 0,
+                part1: true,
+                formAction: '/api/inital-post',
+                form: true,
+                submitted: false,
+            })
+        })
+
+        router
+        .get('/initial-form', function (req, res, next) {
+            res.render('start', {
+                title: 'Bucket Application Form',
+                pageTitle: "App Form",
+                progress: 0,
+                init: true,
+                formAction: '/api/inital-post',
+            })
+        })
+
+    router
+        .get('/next-step', function (req, res, next) {
             res.render('home', {
                 title: 'Bucket Application Form',
                 pageTitle: "App Form",
                 progress: 0,
                 part1: true,
                 formAction: '/api/new-post',
-                form: true
+                form: true,
+                submitted: false,
             })
         })
 
@@ -40,24 +65,54 @@ module.exports = function (router) {
             rteName: stepArray[i].rteName,
             step: (parseInt(req.params.num) + 1),
             id: req.params.id,
-            form: true
+            form: true,
+            submitted: false,
         })
     })
 
     router.get('/preview/:id', function (req, res, next) {
         db
-        .Bucket
-        .findOne({_id: req.params.id})
-        .then(function (dbModel) {
-            console.log("DBMODEL FIND", dbModel)
-            res.render('home', {
-                title: 'Bucket Application Form',
-                pageTitle: "App Form",
-                progress: 0,
-                part1: true,
-                data: dbModel,
-                form: false
+            .Bucket
+            .findOne({_id: req.params.id})
+            .then(function (dbModel) {
+                console.log("DBMODEL preview", dbModel)
+                res.render('preview', {
+                    title: 'Bucket Application Form',
+                    pageTitle: "App Form",
+                    data: dbModel,
+                    form: false,
+                    submitted: false,
+                })
             })
-        })
+    })
+
+    router.get('/application-submitted/:id', function (req, res, next) {
+        db
+            .Bucket
+            .findOne({_id: req.params.id})
+            .then(function (dbModel) {
+                console.log("DBMODEL FIND", dbModel)
+                res.render('preview', {
+                    title: 'Bucket Application Form',
+                    pageTitle: "App Form",
+                    data: dbModel,
+                    form: false,
+                    submitted: true,
+                })
+            })
+    })
+
+    router.get('/edit/:id', function (req, res, next) {
+        db
+            .Bucket
+            .findOne({_id: req.params.id})
+            .then(function (dbModel) {
+                console.log("DBMODEL FIND EDIT", dbModel)
+                res.render('edit', {
+                    title: 'Edit Application',
+                    pageTitle: "Edit",
+                    data: dbModel,
+                })
+            })
     })
 }

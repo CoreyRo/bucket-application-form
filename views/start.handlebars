@@ -1,0 +1,47 @@
+
+<div class="jumbotron text-center">
+    <h1>Bucket Application Form</h1>
+                    <h3>I hacked this together really quick, then I sort of kept goin.</h3>
+    <h4>Author: Corey Rodems</h4>
+    <p>This is a simple node.js web app using express, handlebars, mongo, bootstrap, and summernote "WYSIWYG" text editor</p>
+
+</div>
+<div  class='container maindiv' role="div">
+    <div class="col-md-12">
+        {{#unless init}}
+        <br>
+        <h3 class="text-center">If you haven't sent a JSON object yet, select step 1. Otherwise select step 2</h3>
+        <br>
+        <div class="row mx-auto text-center">
+            <div class="col-md-6 mx-auto">
+                <a href="/initial-form" class="btn btn-warning btn-lg"><h2>Step 1: I don't have an ApplicantID</h2></a>
+            </div>
+            <div class="col-md-6 mx-auto">
+                <a href="/next-step" class="btn btn-success btn-lg"><h2>Step 2: I received an ApplicantID</h2></a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 mx-auto text-center">
+                <br>
+                <br>
+                <div class="maindiv">
+                    <h3>Visit my <a href="http://www.coreyrodems.com/" target="_blank">Portfolio sit </a> for more projects</h3>
+                    <h3>or visit my <a href="https://www.github.com/coreyro" target="_blank">GitHub </a></h3>
+                </div>
+
+            </div>
+        </div>
+                <div class="row mx-auto">
+            <div class="col-md-12 text-center">
+
+            <h5>I didn't write any css, this is all bootswatch</h5>
+            </div>
+        </div>
+        {{/unless}}
+        {{#if init}}
+            <p class='text-center'>Complete the form to finish step one and send your JSON object</p>
+            {{>startform}}
+        {{/if}}
+    </div>
+</div>

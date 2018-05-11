@@ -1,15 +1,14 @@
 
-
-<div role="div" class="container">
+<div class="jumbotron text-center">
+    <h1>Bucket Application Form</h1>
+    <h4>Author: Corey Rodems</h4>
+    <p>This is a simple node.js web app using express, handlebars, mongo, bootstrap, and summernote "WYSIWYG" text editor</p>
+</div>
+<div class='container' role="div">
     <div class="col-md-12">
-        <h1>Sticky footer with fixed navbar</h1>
-        <p class="lead">Pin a fixed-height footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar
-        has been added with
-        <code>padding-top: 60px;</code> on the
-        <code>body &gt; .container</code>.</p>
-    <p>Back to
-        <a href="../sticky-footer">the default sticky footer</a> minus the navbar.</p>
         {{#if form}}
+            <h5>Use the ApplicantID in your email to complete the last section</h5>
+            <p >Complete the form to finish step two and send your JSON object</p>
             {{>form}}
         {{/if}}
         {{#unless form}}
