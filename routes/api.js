@@ -23,4 +23,9 @@ module.exports = function (router) {
     router
         .route('/api/first-submit')
         .post(bucketApp.firstSubmit)
+
+    router
+        .route('/api/final-submit-app')
+        .post(bucketApp.finalSubmit)
+
 }
