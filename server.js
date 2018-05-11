@@ -81,6 +81,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 
 require("./routes/html.js")(app);
+require("./routes/api.js")(app);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -1,38 +1,67 @@
 
-<form method="POST" action="/form-preview">
+<form method="POST" action="{{this.formAction}}">
+{{#if this.part1}}
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="FirstName">First Name</label>
+            <input type="text" class="form-control" id="FirstName" name="firstName" placeholder="enter your first name">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="LastName">Last Name</label>
+            <input type="text" class="form-control" id="LastName" name="lastName" placeholder="enter your last name">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="Email">Email</label>
+        <input type="email" class="form-control" id="Email" name="email" placeholder="Front End Developer">
+    </div>
+    <div class="form-group">
+        <label for="PhoneNumber">Phone Number</label>
+        <input type="text" class="form-control" id="PhoneNumber" name="phone" placeholder="Front End Developer">
+    </div>
     <div class="form-group">
         <label for="Position">Postion</label>
-        <input type="text" class="form-control" id="Position" name="Position" placeholder="Front End Developer">
+        <input type="text" class="form-control" id="Position" name="position" placeholder="Front End Developer">
     </div>
     <div class="form-group">
         <label for="PortfolioUrl">Portfolio URL</label>
-        <input type="text" class="form-control" id="PortfolioUrl" name="PortfolioUrl" placeholder="www.example.com">
+        <input type="text" class="form-control" id="PortfolioUrl" name="portfolioUrl" placeholder="www.example.com">
     </div>
     <div class="form-group">
         <label for="ResumeUrl">Resume URL</label>
-        <input type="text" class="form-control" id="ResumeUrl" name="ResumeUrl" placeholder="www.example.com/resume.pdf">
+        <input type="text" class="form-control" id="ResumeUrl" name="resumeUrl" placeholder="www.example.com/resume.pdf">
     </div>
 
-    <div class="form-group">
+{{/if}}
+{{#unless this.part1}}
+{{>richText}}
+<input type="_id" class="form-control" id="_id" name="_id" value="{{this.id}}" hidden>
+<input type="step" class="form-control" id="step" name="step" value="{{this.step}}" hidden>
+{{/unless}}
+
+    {{!-- <div class="form-group">
         <label for="CoverPageText">Cover Letter</label>
-        <textarea class="summernote" id="CoverPageText" name="CoverPageText"></textarea>
+        <textarea class="summernote" id="CoverPageText" name="coverPageText"></textarea>
     </div>
 
     <div class="form-group">
         <label for="Education">Education</label>
-        <textarea class="summernote" id="Education" name="Education"></textarea>
+        <textarea class="summernote" id="Education" name="education"></textarea>
     </div>
 
     <div class="form-group">
         <label for="Experience">Experience</label>
-        <textarea class="summernote" id="Experience" name="Experience"></textarea>
+        <textarea class="summernote" id="Experience" name="experience"></textarea>
     </div>
 
     <div class="form-group">
         <label for="AdditionalText">Additional Text</label>
-        <textarea class="summernote" id="AdditionalText" name="AdditionalText"></textarea>
-    </div>
+        <textarea class="summernote" id="AdditionalText" name="additionalText"></textarea>
+    </div> --}}
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Next</button>
+    {{>progressbar}}
 </form>
+
+
 
