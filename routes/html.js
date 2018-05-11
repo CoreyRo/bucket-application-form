@@ -114,5 +114,12 @@ module.exports = function (router) {
                     data: dbModel,
                 })
             })
+    }),
+
+    router.get('/done', function (req, res, next) {
+        res.render('done', {
+            title: 'Done',
+            pageTitle: "Done",
+        })
     })
 }

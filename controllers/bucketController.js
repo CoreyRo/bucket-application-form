@@ -125,6 +125,27 @@ module.exports = {
 
     },
 
+    finalSubmit: function(req, res, next){
+        axios.post(`https://apply.bucketthechange.com/api/submitApplication/${req.body.buttonAppId}`,{
+            Position: req.body.Position,
+            PortfolioUrl: req.body.PortfolioUrl,
+            ResumeUrl: req.body.ResumeUrl,
+            CoverPageText: req.body.CoverPageText,
+            Education: req.body.Education,
+            Experience: req.body.Experience,
+            AdditionalText: req.body.AdditionalText
+        })
+        .then((response) => {
+            console.log("response", response.data)
+            res.redirect(`/done`)
+        })
+        .catch(function (err) {
+            if (err) 
+                throw err
+            return console.log("err", err)
+        })
+    },
+
     firstSubmit: function(req, res, next){
         axios.post(`https://apply.bucketthechange.com/api/applicant`, {
             FirstName: req.body.FirstName,
